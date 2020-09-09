@@ -1,0 +1,15 @@
+.BuildControl{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:5px 0;
+}
+
+.BuildControl button{
+    display:block;
+    font:inherit;
+    width:80px;
+    margin:0 5px;
+    outline:none;
+    border-radius:50px;
+}

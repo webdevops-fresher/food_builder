@@ -1,0 +1,24 @@
+.Controls{
+    width:80%;
+    background-color:#e9d62c;
+    margin:auto;
+    padding:10px;
+}
+
+.Label{
+    margin-left:50%;
+}
+
+.OrderButton{
+    border-radius:7px;
+    margin-left:35%;
+}
+
+@media (min-width:600px){
+    .OrderButton{
+        margin-left:48%;
+    }
+    .Controls{
+        width:50%;
+    }
+}
