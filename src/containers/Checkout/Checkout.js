@@ -3,6 +3,7 @@ import CheckoutSummary from "../../components/Order/Checkoutsummary/Checkoutsumm
 import ContactData from "./Contactform/Contactform";
 
 import { Route, withRouter } from "react-router-dom";
+import './Checkout.css';
 
 class Checkout extends React.PureComponent {
   state = {
@@ -15,7 +16,10 @@ class Checkout extends React.PureComponent {
   };
 
   checkoutCancelled = () => {
-    this.props.history.goBack();
+    this.props.history.replace({
+        pathname:'/checkout',
+        state:this.state.ingredients
+    })
   };
 
   checkoutContinued = () => {
@@ -32,7 +36,7 @@ class Checkout extends React.PureComponent {
 
   render() {
     return (
-      <>
+      <div className="Checkout">
         <CheckoutSummary
           ingredients={this.state.ingredients}
           checkoutCancelled={this.checkoutCancelled}
@@ -42,7 +46,7 @@ class Checkout extends React.PureComponent {
           path={this.props.match.path + "/contact-data"}
           component={ContactData}
         />
-      </>
+      </div>
     );
   }
 }
