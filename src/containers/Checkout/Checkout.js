@@ -6,20 +6,12 @@ import { Route, withRouter } from "react-router-dom";
 import './Checkout.css';
 
 class Checkout extends React.PureComponent {
-  state = {
-    ingredients: {
-      salad: 1,
-      meat: 1,
-      cheese: 1,
-      bacon: 1,
-    },
-  };
+  state={
+    ingredients:{}
+  }
 
   checkoutCancelled = () => {
-    this.props.history.replace({
-        pathname:'/checkout',
-        state:this.state.ingredients
-    })
+    this.props.history.goBack();
   };
 
   checkoutContinued = () => {
