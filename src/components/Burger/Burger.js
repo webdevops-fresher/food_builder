@@ -3,6 +3,7 @@ import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 import './Burger.css';
 import propTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
 
 function Burger(props){
     let transformedIngredients = Object.keys( props.ingredients )
@@ -30,4 +31,4 @@ Burger.propTypes={
     ingredients:propTypes.object.isRequired
 }
 
-export default Burger;
+export default withRouter(Burger);
