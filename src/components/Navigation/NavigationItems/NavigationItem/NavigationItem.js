@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 import  './NavigationItem.css';
@@ -6,7 +7,7 @@ import  './NavigationItem.css';
 function NavigationItem(props) {
     return (
         <li className="NavigationItem">
-            <a href={props.link} className={props.active?'active':null}>{props.children}</a>
+            <Link to={props.link} className={props.active?'active':null}>{props.children}</Link>
         </li>
     )
 }

@@ -8,7 +8,7 @@ import errorHandler from "../../components/UI/errorHandler/ErrorHandler";
 
 import axios from "../../axios-order";
 import {connect} from 'react-redux';
-import { ADD_INGREDIENTS, REMOVE_INGREDIENTS } from "../../store/actions";
+import { addIngredient, fetchIngredients, removeIngredient } from "../../store/actions/burgerBuilder";
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -39,14 +39,7 @@ class BurgerBuilder extends React.PureComponent {
   };
 
   componentDidMount() {
-    axios
-      .get("https://food-builder-bc122.firebaseio.com/ingredients.json")
-      .then((response) => {
-        this.setState({ ingredients: response.data });
-      })
-      .catch((err) => {
-        this.setState({ ingredients: null });
-      });
+    this.props.onFetchIngredients();
   }
 
   render() {
@@ -101,16 +94,17 @@ class BurgerBuilder extends React.PureComponent {
 
 const mapStateToProps=state=>{
   return {
-    ings:state.ingredients,
-    totalPrice:state.totalPrice,
-    purchaseable:state.purchaseable
+    ings:state.burger.ingredients,
+    totalPrice:state.burger.totalPrice,
+    purchaseable:state.burger.purchaseable
   }
 }
 
 const mapDispatchToProps=dispatch=>{
   return {
-    onIngredientAdded:(ingName)=>{dispatch({type:ADD_INGREDIENTS,ingredientName:ingName})},
-    onIngredientRemoved:(ingName)=>{dispatch({type:REMOVE_INGREDIENTS,ingredientName:ingName})}
+    onIngredientAdded:(ingName)=>{dispatch(addIngredient(ingName))},
+    onIngredientRemoved:(ingName)=>{dispatch(removeIngredient(ingName))},
+    onFetchIngredients:()=>{dispatch(fetchIngredients())}
   }
 }
 
