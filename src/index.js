@@ -11,11 +11,12 @@ import thunk from 'redux-thunk';
 
 import BurgerBuilderReducer from './store/reducer/burgerBuilder';
 import OrderReducer from './store/reducer/orderReducer';
+import AuthReducer from './store/reducer/authReducer';
 
 
-const composedEnhancers=window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__();
-const rootReducer=combineReducers({burger:BurgerBuilderReducer,orders:OrderReducer});
-const store=createStore(rootReducer,applyMiddleware(thunk));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const rootReducer=combineReducers({burger:BurgerBuilderReducer,orders:OrderReducer,auth:AuthReducer});
+const store=createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)));
 
 
 ReactDOM.render(

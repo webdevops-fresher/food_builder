@@ -11,7 +11,6 @@ const initialState = {
   ingredients:null,
   totalPrice: 4,
   purchaseable: false,
-  //allOrders:[]
 };
 
 const reducer = (state = initialState, action) => {
@@ -46,11 +45,6 @@ const reducer = (state = initialState, action) => {
         totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName],
         purchaseable: count > 0,
       };
-    // case actionTypes.ALL_ORDERS:
-    //     const payload=action.payload;
-    //     let orderIds=Object.keys(payload);
-    //     let orders=orderIds.map(id=>payload[id]);
-    //     return {...state,allOrders:orders}
     case actionTypes.FETCH_INGREDIENTS:
       return {
         ...state,

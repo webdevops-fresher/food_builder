@@ -9,16 +9,20 @@ import './CustomerOrder.css';
 
 function CustomerOrder() {
   const dispatch = useDispatch();
-  const allOrders = useSelector((state) => state.orders).allOrders;
+  const ordersState = useSelector((state) => state.orders);
+  const authState=useSelector(state=>state.auth);
+
 
   useEffect(() => {
-    dispatch(getAllOrders());
+    const token=authState.idToken;
+    dispatch(getAllOrders(token));
   }, []);
 
   return (
     <div>
+      {ordersState.ordersError===null?
       <ul style={{ listStyleType: "none" }}>
-        {allOrders.map((order, index) => {
+        {ordersState.allOrders.map((order, index) => {
           return (
             <li key={index}>
               <div style={{border:'1px solid #ccc',maxWidth:'60%',margin:'auto',marginBottom:'10px'}}>
@@ -32,7 +36,9 @@ function CustomerOrder() {
             </li>
           );
         })}
-      </ul>
+      </ul>:
+      <h3>{ordersState.ordersError}</h3>
+      }
     </div>
   );
 }
