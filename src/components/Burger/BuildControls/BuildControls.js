@@ -10,7 +10,7 @@ const controls = [
   { label: "Meat", type: "meat" },
 ];
 function BuildControls(props) {
-  console.log('>>>props hceck flag point',props.isAuthenticated,props.purchaseable);
+  console.log('>>>props hceck flag point',localStorage.getItem('idToken'));
   const controlMenu = controls.map((menuItem, index) => {
     return (
       <BuildControl
@@ -32,7 +32,7 @@ function BuildControls(props) {
       {controlMenu}
       <button
         className="OrderButton"
-        disabled={!(props.purchaseable && props.isAuthenticated!=null)}
+        disabled={!(props.purchaseable && localStorage.getItem('idToken')!=null)}
         onClick={props.purchase}
       >
         {props.isAuthenticated?"Order Now":"Login to order"}

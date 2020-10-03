@@ -4,7 +4,7 @@ import axios from '../../axios-order';
 export const getAllOrders=(token)=>{
     return async function(dispatch){
         axios
-        .get(`/orders.json?auth=${token}`)
+        .get(`/orders.json?orderBy="userId"&equalTo="${localStorage.getItem('userId')}"`)
         .then((response) => {
           dispatch({ type: ALL_ORDERS, payload: response.data });
         })

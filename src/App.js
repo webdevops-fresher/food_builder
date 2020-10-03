@@ -15,7 +15,7 @@ class App extends React.Component {
         <Layout>
           <Switch>
             <Route path="/orders" component={Orders} />
-            <Route path="/checkout" component={Checkout} />
+            {localStorage.getItem('idToken')!=null?<Route path="/checkout" component={Checkout} />:null}
             <Route path="/auth" component={Auth}/>
             <Route path="/logout" component={Logout} />
             <Route path="/" component={BurgerBuilder} />

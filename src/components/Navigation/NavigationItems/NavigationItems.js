@@ -11,8 +11,8 @@ function NavigationItems(props) {
         <div>
             <ul className="NavigationItems">
                 <NavigationItem link="/" active>Burger Builder</NavigationItem>
-                {authState.idToken!=null?<NavigationItem link="/orders">Orders</NavigationItem>:null}
-                {authState.idToken!=null?
+                {localStorage.getItem('idToken')!=null?<NavigationItem link="/orders">Orders</NavigationItem>:null}
+                {localStorage.getItem('idToken')!=null?
                  <NavigationItem link="/logout">Logout</NavigationItem>
                 :
                 <NavigationItem link="/auth">Authenticate</NavigationItem>

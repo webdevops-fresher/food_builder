@@ -38,6 +38,8 @@ export const auth = (email, password,authMethod) => {
         authData
       )
       .then((response) => {
+        localStorage.setItem('idToken',response.data.idToken);
+        localStorage.setItem('userId',response.data.localId);
         dispatch(authSuccess(response.data.idToken,response.data.localId));
         dispatch(logoutAfterExpiration());
       })
@@ -52,6 +54,7 @@ export const auth = (email, password,authMethod) => {
 const logoutAfterExpiration=()=>{
   return async dispatch=>{
     window.setTimeout(()=>{
+      localStorage.removeItem('idToken');
       dispatch(logout());
     },3600*1000);
   }
@@ -59,6 +62,8 @@ const logoutAfterExpiration=()=>{
 
 
 export const logout=()=>{
+  localStorage.removeItem('idToken');
+  localStorage.removeItem('userId');
   return {
     type:actionTypes.AUTH_LOGOUT
   }
