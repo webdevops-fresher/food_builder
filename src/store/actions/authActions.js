@@ -39,10 +39,9 @@ export const auth = (email, password,authMethod) => {
       )
       .then((response) => {
         dispatch(authSuccess(response.data.idToken,response.data.localId));
-        dispatch(logoutAfterExpiration(response.data.expiresIn));
+        dispatch(logoutAfterExpiration());
       })
       .catch((err) => {
-        console.log('>>>>auth error',err.response);
         dispatch(authFailed(err.response.data.error.message));
       });
   };
@@ -50,11 +49,11 @@ export const auth = (email, password,authMethod) => {
 
 
 
-const logoutAfterExpiration=(expiresIn)=>{
+const logoutAfterExpiration=()=>{
   return async dispatch=>{
-    setTimeout(()=>{
+    window.setTimeout(()=>{
       dispatch(logout());
-    },expiresIn*1000);
+    },3600*1000);
   }
 }
 

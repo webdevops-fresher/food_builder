@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import './Auth.css';
 import * as actions from '../../store/actions/authActions';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import { Redirect } from 'react-router-dom';
 
 class Auth extends React.Component{
 
@@ -59,6 +60,9 @@ class Auth extends React.Component{
         if(this.props.error.length>0){
             error=this.props.error;
         }
+        if(this.props.token!=null){
+            content=<Redirect to="/" />
+        }
         return (
             <div className="Auth">
                {content}
@@ -73,7 +77,8 @@ class Auth extends React.Component{
 const mapStateToProps=state=>{
     return {
         processing:state.auth.processing,
-        error:state.auth.authError
+        error:state.auth.authError,
+        token:state.auth.idToken
     }
 }
 

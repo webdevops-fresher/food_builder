@@ -61,6 +61,7 @@ class BurgerBuilder extends React.PureComponent {
             price={this.props.totalPrice}
             purchaseable={this.props.purchaseable}
             purchase={this.purchaseHandler}
+            isAuthenticated={this.props.authToken}
           />
         </>
       );
@@ -96,7 +97,8 @@ const mapStateToProps=state=>{
   return {
     ings:state.burger.ingredients,
     totalPrice:state.burger.totalPrice,
-    purchaseable:state.burger.purchaseable
+    purchaseable:state.burger.purchaseable,
+    authToken:state.auth.idToken
   }
 }
 
